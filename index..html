@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/shuzai.css">
+  <title>Street Map</title>
+</head>
+
+<body>
+  <header>
+    <div class="hamberger" id="hamberger" data-bind="click: hideOrShow"></div>
+  </header>
+
+  <main>
+    <div id="container" class="my-map">
+    </div>
+  </main>
+
+  <aside id="aside">
+    <div class="search">
+      <span>搜索</span>
+      <input type="text" name="search" id="search" class="search-input" placeholder="输入您想搜索的地址" data-bind="value: inputValue, valueUpdate: 'keyup'">
+    </div>
+
+    <h3>热门地点</h3>
+
+    <ul data-bind="foreach: listFilter">
+      <li data-bind="text: name,click: $parent.clickItem"></li>
+    </ul>
+  </aside>
+
+  <script async defer src="https://webapi.amap.com/maps?v=1.4.2&key=646d7f833e7ab2bab3d5ecacd5c023b1&plugin=AMap.AdvancedInfoWindow"></script>
+  <script src="js/knockout-3.4.2.js"></script>
+  <script src="js/map.js"></script>
+</body>
+
+</html>

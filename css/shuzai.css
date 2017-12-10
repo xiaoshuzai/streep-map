@@ -1,0 +1,150 @@
+/*全部使用 border-box 盒模型，方便计算，且不影响 flex-box 布局*/
+
+*, *::before, *::after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/*采用10px, 此时 1rem = 10px*/
+
+html {
+  font-size: 62.5%;
+}
+
+/*按 16px 基础设置*/
+
+/*Segoe UI - Windows UI 字体（从 Windows Vista 开始使用）；
+Helvetica Neue 是 iOS7 及 OSX 10.10 UI 字体（在部分文字垂直居中的场景有一些小问题，暂时先使用 Lucida Grande）；
+有些 Windows 用户安装了丽黑字体，丽黑字体在 Windows 上渲染出来很模糊，所以把微软雅黑放在苹果丽黑之前；
+FreeSans - 包括 Ubuntu 之类的 Linux 分发版包含的字体。*/
+
+/*-webkit-font-smoothing: antialiased; 开启反锯齿，能让页面文字更平滑，纤细*/
+
+body {
+  font-size: 1.6rem;
+  font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+html, body, main {
+  width: 100%;
+  height: 100%;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  background-color: #999;
+  opacity: .8;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.hamberger {
+  width: 20px;
+  height: 20px;
+  border-top: 12px double black;
+  border-bottom: 4px solid black;
+  margin-left: 1.5rem;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.hamberger-active {
+  transform: rotate(90deg);
+}
+
+aside {
+  width: 260px;
+  border: 1px solid #999;
+  position: fixed;
+  top: 30px;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  background-color: #fff;
+  transition: .5s;
+}
+
+.aside-active {
+  transform: translate3d(-260px,0,0);
+}
+
+.search {
+  margin: 1rem;
+  text-align: center;
+}
+
+.search span {
+  margin-right: 1rem;
+}
+
+aside h3 {
+  text-align: center;
+  color: #fff;
+  background-color: #ff0036;
+}
+
+aside ul {
+  margin: 1rem;
+  text-align: left;
+  list-style: none;
+}
+
+aside ul li {
+  margin: 1rem;
+}
+
+aside ul li:hover {
+  background-color: #ff0036;
+  color: #fff;
+}
+
+.my-map {
+  width: 100%;
+}
+
+.my-map .icon {
+  background: url(http://lbs.amap.com/console/public/show/marker.png) no-repeat;
+}
+
+.my-map .icon-cir {
+  height: 31px;
+  width: 28px;
+}
+
+.my-map .icon-twig {
+  height: 27px;
+  width: 30px;
+}
+
+.my-map .icon-cir-red {
+  background-position: -11px -5px;
+}
+
+.my-map .icon-cir-blue {
+  background-position: -11px -55px;
+}
+
+.my-map .icon-twig-green {
+  background-position: -187px -155px;
+}
+
+.amap-container {
+  height: 100%;
+}
+
+.amap-adcontent-body h5 {
+  font-size: 1.2em;
+  margin: .5em;
+}
+
+.amap-adcontent-body div {
+  margin: .5em;
+}
