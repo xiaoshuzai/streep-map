@@ -308,6 +308,34 @@ function init() {
       setTimeout(function() {
           thisMarker.setAnimation("AMAP_ANIMATION_NONE");
       }, 2500);
+      map.panTo(thisMarker.getPosition());
+  }
+
+  /*================
+  == 天气 api
+  =================*/
+
+  fetch(' http://api.yytianqi.com/observe?city=CH280601&key=c1os124i3vk7jbjn').then(function(response) {
+    return response.json();
+  })
+  .then(addWeather)
+  .catch(function(e){
+    return error(e);
+  });
+
+  function addWeather(data) {
+    var weather = document.getElementById("weather");
+    // console.log(data.data.tq);
+    weather.innerHTML = "<h3>天气实况</h3>" +
+                        "<p>当前天气：" + data.data.tq + "</p>" +
+                        "<p>当前气温：" + data.data.qw + "</p>" +
+                        "<p>当前风力：" + data.data.fl + "</p>" +
+                        "<p>相对湿度：" + data.data.sd + "</p>";
+  }
+
+  function error(e) {
+    // console.log(response.json());
+    alert("天气数据加载失败，请刷新页面,或者直接忽视");
   }
 
   /*================
@@ -352,8 +380,18 @@ function init() {
     this.listFilter = ko.computed(function() {
       return ko.utils.arrayFilter(self.filter(), function(item) {
         if ((item.name().toLowerCase()).indexOf(self.inputValue().toLowerCase()) >= 0) {
+          markers.forEach(function(marker) {
+            if(marker.name === item.name()) {
+              marker.show();
+            }
+          });
           return true;
         } else {
+          markers.forEach(function(marker) {
+            if(marker.name === item.name()) {
+              marker.hide();
+            }
+          });
           return false;
         }
       });
@@ -361,7 +399,7 @@ function init() {
 
     this.clickItem = function(item) {
       // 列表中的 item 和 marker 来自不同的数据，拥有的方法也不同，需要进行条件判断
-      // Array.prototype 返回符合条件的第一个数值
+      // Array.prototype.find 返回符合条件的第一个数值
       // 用这个数值来判断所点击的列表项的 name 是否和地图中的 name 相同
       // 如一致，绑定交互事件
       var clickedMarker = markers.find(function(marker){
@@ -376,13 +414,13 @@ function init() {
     /*================
     == 汉堡按钮点击事件
     =================*/
+    this.activeHamberger = ko.observable(''); // 设置汉堡菜单按钮的 class 值
+    this.activeAside = ko.observable('');
+    this.isActive = ko.observable(false); // 用于设置开关状态
 
     this.hideOrShow = function() {
-      var aside = document.getElementById("aside");
-      aside.classList.toggle("aside-active");
-
-      var hamberger = document.getElementById("hamberger");
-      hamberger.classList.toggle("hamberger-active");
+      self.isActive ? self.activeHamberger('hamberger-active') && self.activeAside('aside-active') : self.activeHamberger('') && self.activeAside('');
+      self.isActive = !self.isActive;
     };
   };
   // 启动 knockout.js

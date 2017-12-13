@@ -12,7 +12,7 @@
 
 <body>
   <header>
-    <div class="hamberger" id="hamberger" data-bind="click: hideOrShow"></div>
+    <div class="hamberger" id="hamberger" data-bind="click: hideOrShow, css: activeHamberger"></div>
   </header>
 
   <main>
@@ -20,7 +20,7 @@
     </div>
   </main>
 
-  <aside id="aside">
+  <aside id="aside" data-bind="css: activeAside">
     <div class="search">
       <span>搜索</span>
       <input type="text" name="search" id="search" class="search-input" placeholder="输入您想搜索的地址" data-bind="value: inputValue, valueUpdate: 'keyup'">
@@ -32,6 +32,9 @@
       <li data-bind="text: name,click: $parent.clickItem"></li>
     </ul>
   </aside>
+
+  <div id="weather">
+  </div>
 
   <script async defer src="https://webapi.amap.com/maps?v=1.4.2&key=646d7f833e7ab2bab3d5ecacd5c023b1&plugin=AMap.AdvancedInfoWindow"></script>
   <script src="js/knockout-3.4.2.js"></script>

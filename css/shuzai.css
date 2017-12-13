@@ -148,3 +148,24 @@ aside ul li:hover {
 .amap-adcontent-body div {
   margin: .5em;
 }
+
+#weather {
+  position: fixed;
+  top: 30px;
+  right: 0;
+  bottom: 700px;
+  width: 300px;
+  background-color: rgba(128,128,128,.5);
+}
+
+#weather h3 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#weather p {
+  color: #fff;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
